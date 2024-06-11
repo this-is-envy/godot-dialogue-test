@@ -8,7 +8,6 @@ radius = 28.1603
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_oyixv")
-velocity = 300
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)

@@ -28,4 +28,4 @@ charScript = ExtResource("5_kaa7g")
 [node name="Player" parent="." instance=ExtResource("2_txei3")]
 position = Vector2(410, 100)
 scale = Vector2(0.5, 0.5)
-velocity = 240
+velocity = 150

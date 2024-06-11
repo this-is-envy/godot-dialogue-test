@@ -1,19 +1,15 @@
 extends Node2D
 
-@export var velocity: int = 150
+@export var move_speed: int = 150
 
 # nodes
 var __sensor_shape: CollisionShape2D
 var __sensor_poly: CircleShape2D
 
 # player state tracking
-
-# focus_target
-var __target_area: Area2D
-# input direction
-var __direction: Vector2
-# whether the player is engaged
-var __engaged: bool = false
+var __target_area: Area2D   # what the focus sensor has most recently discovered
+var __facing: Vector2       # input direction
+var __engaged: bool = false # whether the player is engaged, e.g., whether they should respond to player input
 
 func _ready():
 	__sensor_shape = $DialogueCollider/CollisionShape2D
@@ -32,21 +28,20 @@ func _input(event: InputEvent) -> void:
 	if __engaged:
 		return
 
-	__direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down').normalized()
+	__facing = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down').normalized()
 	if 	event.is_action_pressed('ui_accept') and __target_area != null:
 		var npc: NPC = __target_area.get_parent()
 		if npc.talk():
 			__engaged = true
-			__direction = Vector2.ZERO
+			__facing = Vector2.ZERO
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var pos_delta = __direction * delta * velocity
-
+	var pos_delta = __facing * delta * move_speed
 	position += pos_delta
-	if __direction != Vector2.ZERO:
-		rotation = Vector2.UP.angle_to(__direction)
+	if __facing != Vector2.ZERO:
+		rotation = Vector2.UP.angle_to(__facing)
 	queue_redraw()
 
 func sensor_exit(area: Area2D):
