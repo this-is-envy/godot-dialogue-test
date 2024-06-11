@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1sb8qrbfrvgi"]
+
+[ext_resource type="Script" path="res://Scripts/TestScene.gd" id="1_cxyod"]
+[ext_resource type="PackedScene" uid="uid://df3lh0vw86k6j" path="res://Scenes/Player.tscn" id="2_txei3"]
+[ext_resource type="Resource" uid="uid://ciue1mwsy7lvg" path="res://Dialogue/Blue.dialogue" id="3_5wq1n"]
+[ext_resource type="PackedScene" uid="uid://drmma1dj77hei" path="res://Scenes/NPC.tscn" id="3_qj46p"]
+[ext_resource type="Resource" uid="uid://l6hjinhbwyaq" path="res://Dialogue/Green.dialogue" id="4_je4n8"]
+[ext_resource type="Resource" uid="uid://dnpldoc7e8b8r" path="res://Dialogue/Red.dialogue" id="5_kaa7g"]
+
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_cxyod")
+
+[node name="Blue" parent="." instance=ExtResource("3_qj46p")]
+position = Vector2(626, 221)
+modColor = Color(0, 0.109375, 1, 1)
+charScript = ExtResource("3_5wq1n")
+
+[node name="Green" parent="." instance=ExtResource("3_qj46p")]
+position = Vector2(289, 264)
+modColor = Color(0, 1, 0.296875, 1)
+charScript = ExtResource("4_je4n8")
+
+[node name="Red" parent="." instance=ExtResource("3_qj46p")]
+position = Vector2(505, 386)
+modColor = Color(1, 0, 0, 1)
+charScript = ExtResource("5_kaa7g")
+
+[node name="Player" parent="." instance=ExtResource("2_txei3")]
+position = Vector2(410, 100)
+scale = Vector2(0.5, 0.5)
+velocity = 240

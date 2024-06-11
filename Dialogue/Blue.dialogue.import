@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://ciue1mwsy7lvg"
+path="res://.godot/imported/Blue.dialogue-baa340a6bf74967f58e48b8b36d0ff3d.tres"
+
+[deps]
+
+source_file="res://Dialogue/Blue.dialogue"
+dest_files=["res://.godot/imported/Blue.dialogue-baa340a6bf74967f58e48b8b36d0ff3d.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://drmma1dj77hei"]
+
+[ext_resource type="Script" path="res://Scripts/NPC.gd" id="1_2wau5"]
+[ext_resource type="Texture2D" uid="uid://cit6bphhsg26y" path="res://icon.svg" id="2_1ugrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fww8"]
+size = Vector2(59, 60)
+
+[node name="Npc" type="Node2D"]
+script = ExtResource("1_2wau5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1ugrl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_0fww8")
