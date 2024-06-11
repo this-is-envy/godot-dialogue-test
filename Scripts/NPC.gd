@@ -10,10 +10,8 @@ class_name NPC
 func _ready():
 	modulate = modColor
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func talk() -> void:
+func talk() -> bool:
 	if charScript != null:
 		DialogueManager.show_example_dialogue_balloon(charScript, 'start')
+		return true
+	return false
