@@ -1,12 +1,14 @@
 ~ start
 
 if !State.gauntlet_passed
-	Nathan: Return once you have passed through the gauntlet.
-	- What is the gauntlet?
-		Nathan: A test of courage. Not for the faint of heart!
-	- I will!
-	Nathan: Best of luck to you.
+	Blue: Return once you have passed through the gauntlet. [ID:t8242fabf08]
+	- What is the gauntlet? [ID:t0624ce25fc]
+		Blue: A place of despair. [ID:t09b0bf5e96]
+		Blue: A test of courage. [ID:tb46ca192cb]
+		Blue: Not for the faint of heart! [ID:t19f6215b29]
+	- I will! [ID:tf7bbc9494e]
+	Blue: Best of luck to you. [ID:t9852bd5bf4]
 else:
-	Nathan: Well done!
+	Blue: Well done! [ID:td0f39d967e]
 
 => END

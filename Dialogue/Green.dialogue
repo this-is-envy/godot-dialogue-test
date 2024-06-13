@@ -1,3 +1,7 @@
 ~ start
-Green: [[Hi|Hello|Howdy]], my name is Green.
+Green: What language does Blue speak?
+- English
+	set State.language = "en"
+- 한국어
+	set State.language = "ko"
 => END

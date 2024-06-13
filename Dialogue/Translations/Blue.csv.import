@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://df4ot5bced6do"
+
+[deps]
+
+files=["res://Dialogue/Translations/Blue.en.translation", "res://Dialogue/Translations/Blue.ko.translation"]
+
+source_file="res://Dialogue/Translations/Blue.csv"
+dest_files=["res://Dialogue/Translations/Blue.en.translation", "res://Dialogue/Translations/Blue.ko.translation"]
+
+[params]
+
+compress=true
+delimiter=0

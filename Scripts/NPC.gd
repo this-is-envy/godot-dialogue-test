@@ -12,6 +12,7 @@ func _ready():
 
 func talk() -> bool:
 	if charScript != null:
+		TranslationServer.set_locale(State.language)
 		DialogueManager.show_example_dialogue_balloon(charScript, 'start')
 		return true
 	return false
