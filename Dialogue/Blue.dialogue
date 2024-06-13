@@ -1,13 +1,12 @@
 ~ start
 
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+if !State.gauntlet_passed
+	Nathan: Return once you have passed through the gauntlet.
+	- What is the gauntlet?
+		Nathan: A test of courage. Not for the faint of heart!
+	- I will!
+	Nathan: Best of luck to you.
+else:
+	Nathan: Well done!
 
 => END
