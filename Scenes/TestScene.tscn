@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1sb8qrbfrvgi"]
+[gd_scene load_steps=10 format=3 uid="uid://d1sb8qrbfrvgi"]
 
 [ext_resource type="Script" path="res://Scripts/TestScene.gd" id="1_cxyod"]
 [ext_resource type="PackedScene" uid="uid://df3lh0vw86k6j" path="res://Scenes/Player.tscn" id="2_txei3"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://drmma1dj77hei" path="res://Scenes/NPC.tscn" id="3_qj46p"]
 [ext_resource type="Resource" uid="uid://l6hjinhbwyaq" path="res://Dialogue/Green.dialogue" id="4_3dfs1"]
 [ext_resource type="Resource" uid="uid://dnpldoc7e8b8r" path="res://Dialogue/Red.dialogue" id="5_n2m8r"]
+[ext_resource type="Texture2D" uid="uid://cagcexe6y22se" path="res://Art/ItemSheet.png" id="7_yu5j4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nevj6"]
+size = Vector2(20, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_td614"]
+size = Vector2(20, 21)
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_cxyod")
@@ -28,3 +35,36 @@ charScript = ExtResource("5_n2m8r")
 [node name="Player" parent="." instance=ExtResource("2_txei3")]
 position = Vector2(410, 100)
 scale = Vector2(0.5, 0.5)
+
+[node name="TheGautlet" type="Area2D" parent="."]
+position = Vector2(101, 181)
+scale = Vector2(3, 3)
+
+[node name="GauntletLeft" type="Sprite2D" parent="TheGautlet"]
+texture_filter = 1
+texture = ExtResource("7_yu5j4")
+region_enabled = true
+region_rect = Rect2(112, 112, 16, 16)
+
+[node name="GauntletRight" type="Sprite2D" parent="TheGautlet"]
+texture_filter = 1
+position = Vector2(31.3333, 0)
+texture = ExtResource("7_yu5j4")
+region_enabled = true
+region_rect = Rect2(112, 112, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TheGautlet"]
+position = Vector2(16, -0.333335)
+shape = SubResource("RectangleShape2D_nevj6")
+
+[node name="GauntletToast" type="Area2D" parent="TheGautlet"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TheGautlet/GauntletToast"]
+position = Vector2(16, -0.166668)
+shape = SubResource("RectangleShape2D_td614")
+
+[connection signal="area_entered" from="TheGautlet" to="." method="gauntlet_enter"]
+[connection signal="area_entered" from="TheGautlet/GauntletToast" to="." method="toast_entered"]
+[connection signal="area_exited" from="TheGautlet/GauntletToast" to="." method="toast_exited"]

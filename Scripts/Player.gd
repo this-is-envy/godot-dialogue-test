@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Player
+
 @export var move_speed: int = 150
 
 # nodes
@@ -16,7 +18,7 @@ func _ready():
 	__sensor_poly = __sensor_shape.shape
 
 	# when we finish a conversation unset engaged
-	DialogueManager.dialogue_ended.connect(func(_resource: DialogueResource) -> void: __engaged = false)
+	DialogueManager.dialogue_ended.connect(func(_resource: DialogueResource) -> void: set_engaged(false))
 
 func _draw():
 	var sensor_color = Color.RED
@@ -32,9 +34,12 @@ func _input(event: InputEvent) -> void:
 	if 	event.is_action_pressed('ui_accept') and __target_area != null:
 		var npc: NPC = __target_area.get_parent()
 		if npc.talk():
-			__engaged = true
-			__facing = Vector2.ZERO
+			set_engaged(true)
 
+func set_engaged(val: bool) -> void:
+	__engaged = val
+	if val:
+		__facing = Vector2.ZERO
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

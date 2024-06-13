@@ -1,0 +1,30 @@
+~ start_enter
+if State.gauntlet_passed
+	if State.gauntlet_revisited
+		=> END
+	else
+		set State.gauntlet_revisited = true
+		???: I understand. You come seeking additional challenge and thrill.
+		???: You miss me.
+		???: But you have conquered this and must seek adventure elsewhere.
+		=> END
+
+???: You are approaching [b]The Gauntlet[/b].
+???: A challenge awaits all who dare enter; steel yourself!
+
+set State.attempts += 1
+if State.attempts == 2
+	???: I see you are not the coward I initially took you for!
+elif State.attempts > 3
+	???: Would you just commit already!?
+=> END
+
+~ start_exit
+if State.gauntlet_passed
+	=> END
+else
+	if State.attempts == 1
+		???: Return [i]if you dare[/i]!
+	if State.attempts > 1
+		???: Coward!
+=> END
