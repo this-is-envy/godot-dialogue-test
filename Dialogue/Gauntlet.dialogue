@@ -4,19 +4,19 @@ if State.gauntlet_passed
 		=> END
 	else
 		set State.gauntlet_revisited = true
-		???: I understand. You come seeking additional challenge and thrill.
-		???: You miss me.
-		???: But you have conquered this and must seek adventure elsewhere.
+		???: I understand. You come seeking additional challenge and thrill. [ID:t47dab47db9]
+		???: You miss me. [ID:tbf89c01375]
+		???: But you have conquered this and must seek adventure elsewhere. [ID:t4911c85435]
 		=> END
 
-???: You are approaching [b]The Gauntlet[/b].
-???: A challenge awaits all who dare enter; steel yourself!
+???: You are approaching [b]The Gauntlet[/b]. [ID:t153729601d]
+???: A challenge awaits all who dare enter; steel yourself! [ID:td3fc3a1aff]
 
 set State.attempts += 1
 if State.attempts == 2
-	???: I see you are not the coward I initially took you for!
+	???: I see you are not the coward I initially took you for! [ID:t77af9cb858]
 elif State.attempts > 3
-	???: Would you just commit already!?
+	???: Would you just commit already!? [ID:t96a4319a85]
 => END
 
 ~ start_exit
@@ -24,7 +24,7 @@ if State.gauntlet_passed
 	=> END
 else
 	if State.attempts == 1
-		???: Return [i]if you dare[/i]!
+		???: Return [i]if you dare[/i]! [ID:t94eeef7ed3]
 	if State.attempts > 1
-		???: Coward!
-=> END
+		???: Coward! [ID:tae6f200fe8]
+=> END!

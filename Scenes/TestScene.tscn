@@ -35,6 +35,7 @@ charScript = ExtResource("5_n2m8r")
 [node name="Player" parent="." instance=ExtResource("2_txei3")]
 position = Vector2(410, 100)
 scale = Vector2(0.5, 0.5)
+move_speed = 250
 
 [node name="TheGautlet" type="Area2D" parent="."]
 position = Vector2(101, 181)

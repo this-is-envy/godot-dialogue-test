@@ -6,9 +6,10 @@ if !State.gauntlet_passed
 		Blue: A place of despair. [ID:t09b0bf5e96]
 		Blue: A test of courage. [ID:tb46ca192cb]
 		Blue: Not for the faint of heart! [ID:t19f6215b29]
+	- I've already been there. [if State.attempts > 0]
 	- I will! [ID:tf7bbc9494e]
 	Blue: Best of luck to you. [ID:t9852bd5bf4]
 else:
 	Blue: Well done! [ID:td0f39d967e]
-
+	Green: Whee
 => END

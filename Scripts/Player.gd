@@ -41,8 +41,7 @@ func set_engaged(val: bool) -> void:
 	if val:
 		__facing = Vector2.ZERO
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta: float):
 	var pos_delta = __facing * delta * move_speed
 	position += pos_delta
 	if __facing != Vector2.ZERO:
