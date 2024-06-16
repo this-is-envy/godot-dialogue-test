@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bi2vyfggk5wep"]
+[gd_scene load_steps=2 format=3 uid="uid://degcbrw7keon7"]
 
 [ext_resource type="Script" path="res://addons/dialogue_manager/views/graph_view.gd" id="1_vlgyn"]
 
@@ -11,11 +11,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vlgyn")
 
-[node name="GraphEdit" type="GraphEdit" parent="."]
+[node name="DisplayGrid" type="GraphEdit" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scroll_offset = Vector2(-622, -439)
