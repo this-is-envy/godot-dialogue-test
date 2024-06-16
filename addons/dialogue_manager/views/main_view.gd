@@ -28,6 +28,7 @@ enum TranslationSource {
 
 
 @onready var parse_timer := $ParseTimer
+signal parse_updated(file_path: String, DialogueManagerParseResult)
 
 # Dialogs
 @onready var new_dialog: FileDialog = $NewDialog
@@ -50,6 +51,7 @@ enum TranslationSource {
 @onready var save_all_button: Button = %SaveAllButton
 @onready var find_in_files_button: Button = %FindInFilesButton
 @onready var test_button: Button = %TestButton
+@onready var visualize_button: Button = %VisualizeButton
 @onready var search_button: Button = %SearchButton
 @onready var insert_button: MenuButton = %InsertButton
 @onready var translations_button: MenuButton = %TranslationsButton
@@ -69,6 +71,9 @@ enum TranslationSource {
 @onready var code_edit := %CodeEdit
 @onready var errors_panel := %ErrorsPanel
 
+# Visualization view
+@onready var visualize_view: GraphView = %GraphView
+
 # The Dialogue Manager plugin
 var editor_plugin: EditorPlugin
 
@@ -83,16 +88,19 @@ var current_file_path: String = "":
 			search_button.disabled = true
 			insert_button.disabled = true
 			translations_button.disabled = true
+			visualize_button.disabled = true
 			content.dragger_visibility = SplitContainer.DRAGGER_HIDDEN
 			files_list.hide()
 			title_list.hide()
 			code_edit.hide()
 			errors_panel.hide()
+			visualize_view.teardown()
 		else:
 			test_button.disabled = false
 			search_button.disabled = false
 			insert_button.disabled = false
 			translations_button.disabled = false
+			visualize_button.disabled = false
 			content.dragger_visibility = SplitContainer.DRAGGER_VISIBLE
 			files_list.show()
 			title_list.show()
@@ -161,6 +169,10 @@ func _ready() -> void:
 			open_file(reopen_file)
 
 		self.current_file_path = DialogueSettings.get_user_value("most_recent_reopen_file", "")
+
+	# set up graph view
+	# visualize_view.main_view = self
+	visualize_view.code_edit = code_edit
 
 	save_all_button.disabled = true
 
@@ -496,6 +508,7 @@ func parse() -> void:
 		errors = parser.get_errors()
 	code_edit.errors = errors
 	errors_panel.errors = errors
+	parse_updated.emit(current_file_path, parser.get_data())
 	parser.free()
 
 
@@ -949,6 +962,7 @@ func _on_code_edit_text_changed() -> void:
 	files_list.mark_file_as_unsaved(current_file_path, buffer.text != buffer.pristine_text)
 	save_all_button.disabled = open_buffers.values().filter(func(d): return d.text != d.pristine_text).size() == 0
 
+	visualize_view.current_file = current_file_path
 	parse_timer.start(1)
 
 
@@ -1017,6 +1031,11 @@ func _on_test_button_pressed() -> void:
 	var test_scene_path: String = DialogueSettings.get_setting("custom_test_scene_path", "res://addons/dialogue_manager/test_scene.tscn")
 	editor_plugin.get_editor_interface().play_custom_scene(test_scene_path)
 
+func _on_visualize_button_pressed() -> void:
+	if visualize_view.visible:
+		visualize_view.teardown()
+	else:
+		visualize_view.prepare(current_file_path)
 
 func _on_settings_dialog_confirmed() -> void:
 	settings_view.apply_settings_changes()
